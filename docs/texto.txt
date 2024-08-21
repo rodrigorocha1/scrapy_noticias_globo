@@ -1,0 +1,21 @@
+https://g1.globo.com/rss/g1/
+
+
+for titulo in response.xpath('//item/title/text()').getall():
+...     print(titulo)
+...     print()
+
+
+Preciso de: Título, subtítulo, texto, autor, data e hora.
+
+titulos = response.xpath('//item/title/text()').getall()
+descricoes = response.xpath('//item/description/text()').getall()
+import re
+descricoes = [re.sub(r'<img.*?>|<br\s*/?>', '', desc).strip() for desc in descricoes]
+links = response.xpath('//item/link/text()').getall()
+data_publicacao = response.xpath('//item/pubDate/text()').getall()
+url_noticas =  response.xpath('//item/guid/text()').getall()  
+
+
+
+<img src="https://s2-g1.glbimg.com/Kr-ueLl65-W3WI19uT_PHuTBsRs=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2024/4/e/K7SmxbTjqwf6dNTiLINA/ivete-nataciolyg1.jpeg" /><br />  
