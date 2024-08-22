@@ -9,8 +9,8 @@ import scrapy
 class G1RssSpiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    titulo = scrapy.Field()
-    descricao = scrapy.Field()
-    link = scrapy.Field()
-    data_publicacao = scrapy.Field()
-    autor_reportagem = scrapy.Field()
+    titulo = scrapy.Field(serialize=str)
+    descricao = scrapy.Field(serialize=str)
+    link = scrapy.Field(serialize=str)
+    data_publicacao = scrapy.Field(serialize=str)
+    autor_reportagem = scrapy.Field(serialize=str)
