@@ -27,6 +27,7 @@ response.css('p::text').get() Autor
 
 response.css('p.content-publication-data__from::text').get() Também tráz o autor
 
+response.css('a.multi_signatures::text').get()
 
 scrapy shell https://g1.globo.com/sp/ribeirao-preto-franca/eleicoes/2024/noticia/2024/08/21/eleicoes-2024-entenda-como-ocorre-o-pleito-em-cidades-com-apenas-um-candidato-a-prefeitura.ghtml
 
@@ -34,4 +35,4 @@ scrapy shell https://g1.globo.com/sp/ribeirao-preto-franca/eleicoes/2024/noticia
 response.css('p.content-text__container::text').getall() Traz as noticias
 
 
- 
+ textos = response.xpath('//p[@class="content-publication-data__from"]/text() | //p[@class="content-publication-data__from"]//a/text()').getall()

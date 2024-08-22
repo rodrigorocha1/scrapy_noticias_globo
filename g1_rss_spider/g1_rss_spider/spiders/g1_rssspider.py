@@ -32,11 +32,12 @@ class G1RssspiderSpider(scrapy.Spider):
 
     def parse_artigo_g1(self, response: Response) -> Generator[G1RssSpiderItem, None, None]:
         item = G1RssSpiderItem()
-        item['titulo'] = response.meta['titulo'].strip()
-        item['descricao'] = response.meta['descricao'].strip()
-        item['link'] = response.meta['link'].strip()
-        item['data_publicacao'] = response.meta['data_publicacao'].strip()
+        item['titulo'] = response.meta['titulo']
+        item['descricao'] = response.meta['descricao']
+        item['link'] = response.meta['link']
+        item['data_publicacao'] = response.meta['data_publicacao']
         item['autor_reportagem'] = response.xpath(
-            '//p[@class="content-publication-data__from"]/text()').get()
-
+            '//p[@class="content-publication-data__from"]/text() | //p[@class="content-publication-data__from"]//a/text()').getall()
+        item['texto_noticia'] = response.css(
+            'p.content-text__container::text').getall()
         yield item

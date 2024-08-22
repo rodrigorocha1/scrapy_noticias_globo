@@ -14,3 +14,4 @@ class G1RssSpiderItem(scrapy.Item):
     link = scrapy.Field(serialize=str)
     data_publicacao = scrapy.Field(serialize=str)
     autor_reportagem = scrapy.Field(serialize=str)
+    texto_noticia = scrapy.Field()

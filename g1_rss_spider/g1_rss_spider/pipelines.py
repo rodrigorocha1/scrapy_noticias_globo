@@ -15,10 +15,13 @@ class CleanG1RssPipeline:
     def process_item(self, item: G1RssSpiderItem, spider: Spider):
         item['descricao'] = ''.join(re.sub(
             r'<img.*?>|<br\s*/?>', '', item['descricao'].replace('\n', ' ')).strip())
-        item['autor_reportagem'] = item['autor_reportagem'].strip()
+
         item['titulo'] = item['titulo'].strip()
         item['descricao'] = item['descricao'].strip()
         item['link'] = item['link'].strip()
         item['data_publicacao'] = item['data_publicacao'].strip()
-        item['autor_reportagem'] = item['autor_reportagem'].strip()
+        item['autor_reportagem'] = ''.join(
+            texto.strip() for texto in item['autor_reportagem'])
+        item['texto_noticia'] = ' '.join(
+            [palavra for palavra in item['texto_noticia']])
         return item
