@@ -15,7 +15,17 @@ from g1_rss_spider.items import G1RssSpiderItem
 
 
 class CleanG1RssPipeline:
-    def process_item(self, item: G1RssSpiderItem, spider: Spider):
+    def process_item(self, item: G1RssSpiderItem, spider: Spider) -> G1RssSpiderItem:
+        """Método para limpesa dos items
+
+        Args:
+            item (G1RssSpiderItem): os itens das noticias
+            spider (Spider): Spyder
+
+        Returns:
+            G1RssSpiderItem: itens tratados
+        """
+
         item['descricao'] = ''.join(re.sub(
             r'<img.*?>|<br\s*/?>', '', item['descricao'].replace('\n', ' ')).strip())
 
@@ -41,11 +51,23 @@ class XLSXPipeline:
         self.__aplicar_formatacao()
 
     def process_item(self, item: G1RssSpiderItem, spider: Spider) -> G1RssSpiderItem:
+        """Método para preparar os dados antes de serem
+            salvos no xlsx
+
+        Args:
+            item (G1RssSpiderItem): itens das noticias      
+            spider (Spider): Spyder     
+
+        Returns:
+            G1RssSpiderItem: itens preparados
+        """
         self.gerar_dados(item)
         self._ajustar_comprimento_colunas()
         return item
 
     def __aplicar_formatacao(self):
+        """Método para formatar valores
+        """
         fonte_neegrito = Font(bold=True)
         alinhameto_celula = Alignment(horizontal="center")
         for cell in self.sheet["1:1"]:
@@ -53,6 +75,11 @@ class XLSXPipeline:
             cell.alignment = alinhameto_celula
 
     def gerar_dados(self, item: G1RssSpiderItem):
+        """Métodos para gerar linha com os dados 
+
+        Args:
+            item (G1RssSpiderItem): itens das noticias
+        """
         linha = [
             item['titulo'],
             item['subtitulo'],
@@ -65,6 +92,8 @@ class XLSXPipeline:
         self.sheet.append(linha)
 
     def _ajustar_comprimento_colunas(self):
+        """método para asjustar comprimentos dos valores
+        """
 
         for coluna in self.sheet.columns:
             comprimento_maximo = 0
@@ -81,4 +110,9 @@ class XLSXPipeline:
             self.sheet.column_dimensions[letra_coluna].width = comprimento_ajustado
 
     def close_spider(self, spider: Spider):
+        """metodo para salvar os dados
+
+        Args:
+            spider (Spider): Spider
+        """
         self.workbook.save('noticias.xlsx')

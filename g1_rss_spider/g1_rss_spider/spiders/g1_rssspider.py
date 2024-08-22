@@ -12,6 +12,14 @@ class G1RssspiderSpider(scrapy.Spider):
         "https://g1.globo.com/dynamo/sp/ribeirao-preto-franca/rss2.xml"]
 
     def parse(self, response: Response) -> Generator[scrapy.Request, None, None]:
+        """Método para obter os dados do xml
+
+        Args:
+            response (Response): response do scrapy
+
+        Yields:
+            Generator[scrapy.Request, None, None]: generator com os itens das noticias
+        """
         titulos = response.xpath('//item/title/text()').getall()
         descricoes = response.xpath('//item/description/text()').getall()
         links = response.xpath('//item/link/text()').getall()
@@ -31,6 +39,14 @@ class G1RssspiderSpider(scrapy.Spider):
             )
 
     def parse_artigo_g1(self, response: Response) -> Generator[G1RssSpiderItem, None, None]:
+        """Método do segundo parse
+
+        Args:
+            response (Response): response e o itens
+
+        Yields:
+            Generator[G1RssSpiderItem, None, None]: obtem os itens das noticias
+        """
         item = G1RssSpiderItem()
         item['titulo'] = response.meta['titulo']
         item['descricao'] = response.meta['descricao']
