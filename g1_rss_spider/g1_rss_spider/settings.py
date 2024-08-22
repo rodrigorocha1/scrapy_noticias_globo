@@ -64,6 +64,8 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     "g1_rss_spider.pipelines.CleanG1RssPipeline": 300,
+    "g1_rss_spider.pipelines.XLSXPipeline": 500,
+
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
