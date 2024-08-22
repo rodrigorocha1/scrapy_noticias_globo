@@ -1,6 +1,7 @@
 import scrapy
 import re
 from scrapy.http import Response
+from g1_rss_spider.items import G1RssSpiderItem
 
 
 class G1RssspiderSpider(scrapy.Spider):
@@ -14,8 +15,7 @@ class G1RssspiderSpider(scrapy.Spider):
         descricoes = response.xpath('//item/description/text()').getall()
         links = response.xpath('//item/link/text()').getall()
         data_publicacoes = response.xpath('//item/pubDate/text()').getall()
-        descricoes = [re.sub(r'<img.*?>|<br\s*/?>', '', desc).strip()
-                      for desc in descricoes]
+
         url_noticas = response.xpath('//item/guid/text()').getall()
 
         for titulo, descricao, link, data_publicacao, descricao, url in zip(titulos, descricoes, links, data_publicacoes, descricoes, url_noticas):
@@ -30,17 +30,12 @@ class G1RssspiderSpider(scrapy.Spider):
             )
 
     def parse_artigo_g1(self, response: Response):
-        titulo = response.meta['titulo']
-        descricao = response.meta['descricao']
-        link = response.meta['link']
-        data_publicacao = response.meta['data_publicacao']
-        autor_reportagem = response.xpath(
+        item = G1RssSpiderItem()
+        item['titulo'] = response.meta['titulo'].strip()
+        item['descricao'] = response.meta['descricao'].strip()
+        item['link'] = response.meta['link'].strip()
+        item['data_publicacao'] = response.meta['data_publicacao'].strip()
+        item['autor_reportagem'] = response.xpath(
             '//p[@class="content-publication-data__from"]/text()').get()
 
-        yield {
-            'titulo': titulo,
-            'descricao': descricao,
-            'link': link,
-            'data_publicacao': data_publicacao,
-            'autor_reportagem': autor_reportagem
-        }
+        yield item
