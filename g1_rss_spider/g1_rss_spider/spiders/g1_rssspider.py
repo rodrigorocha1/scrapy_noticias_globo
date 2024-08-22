@@ -1,3 +1,4 @@
+from typing import Generator
 import scrapy
 import re
 from scrapy.http import Response
@@ -10,7 +11,7 @@ class G1RssspiderSpider(scrapy.Spider):
     start_urls = [
         "https://g1.globo.com/dynamo/sp/ribeirao-preto-franca/rss2.xml"]
 
-    def parse(self, response: Response):
+    def parse(self, response: Response) -> Generator[scrapy.Request, None, None]:
         titulos = response.xpath('//item/title/text()').getall()
         descricoes = response.xpath('//item/description/text()').getall()
         links = response.xpath('//item/link/text()').getall()
@@ -29,7 +30,7 @@ class G1RssspiderSpider(scrapy.Spider):
                 }
             )
 
-    def parse_artigo_g1(self, response: Response):
+    def parse_artigo_g1(self, response: Response) -> Generator[G1RssSpiderItem, None, None]:
         item = G1RssSpiderItem()
         item['titulo'] = response.meta['titulo'].strip()
         item['descricao'] = response.meta['descricao'].strip()
