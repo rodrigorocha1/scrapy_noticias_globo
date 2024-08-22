@@ -21,7 +21,7 @@ class CleanG1RssPipeline:
         item['link'] = item['link'].strip()
         item['data_publicacao'] = item['data_publicacao'].strip()
         item['autor_reportagem'] = ''.join(
-            texto.strip() for texto in item['autor_reportagem'])
+            texto for texto in item['autor_reportagem']).strip()
         item['texto_noticia'] = ' '.join(
-            [palavra for palavra in item['texto_noticia']])
+            [palavra for palavra in item['texto_noticia']]).strip()
         return item
