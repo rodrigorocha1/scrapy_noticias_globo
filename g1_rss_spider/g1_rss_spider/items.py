@@ -16,3 +16,4 @@ class G1RssSpiderItem(scrapy.Item):
     data_publicacao = scrapy.Field(serialize=str)
     autor_reportagem = scrapy.Field(serialize=List[str])
     texto_noticia = scrapy.Field(serialize=List[str])
+    subtitulo = scrapy.Field(serialize=str)

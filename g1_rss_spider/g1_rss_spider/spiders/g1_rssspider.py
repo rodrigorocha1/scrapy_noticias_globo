@@ -40,4 +40,6 @@ class G1RssspiderSpider(scrapy.Spider):
             '//p[@class="content-publication-data__from"]/text() | //p[@class="content-publication-data__from"]//a/text()').getall()
         item['texto_noticia'] = response.css(
             'p.content-text__container::text').getall()
+        item['subtitulo'] = response.css(
+            'h2.content-head__subtitle::text').get()
         yield item
