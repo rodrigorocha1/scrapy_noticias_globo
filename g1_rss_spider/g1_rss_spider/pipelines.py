@@ -38,14 +38,14 @@ class XLSXPipeline:
         self.sheet.title = 'Dados Coletados'
         self.sheet.append(['TITULO', 'SUBTITULO', 'DESCRICAO', 'LINK',
                           'DATA_PUBLICACAO', 'AUTOR_REPORTAGEM', 'TEXTO_NOTICA'])
-        self.__aplicar_negrito_colunas()
+        self.__aplicar_formatacao()
 
     def process_item(self, item: G1RssSpiderItem, spider: Spider) -> G1RssSpiderItem:
         self.gerar_dados(item)
         self._ajustar_comprimento_colunas()
         return item
 
-    def __aplicar_negrito_colunas(self):
+    def __aplicar_formatacao(self):
         fonte_neegrito = Font(bold=True)
         alinhameto_celula = Alignment(horizontal="center")
         for cell in self.sheet["1:1"]:
