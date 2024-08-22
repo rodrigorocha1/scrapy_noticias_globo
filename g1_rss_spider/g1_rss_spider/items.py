@@ -4,6 +4,7 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
+from typing import List
 
 
 class G1RssSpiderItem(scrapy.Item):
@@ -13,5 +14,5 @@ class G1RssSpiderItem(scrapy.Item):
     descricao = scrapy.Field(serialize=str)
     link = scrapy.Field(serialize=str)
     data_publicacao = scrapy.Field(serialize=str)
-    autor_reportagem = scrapy.Field(serialize=str)
-    texto_noticia = scrapy.Field()
+    autor_reportagem = scrapy.Field(serialize=List[str])
+    texto_noticia = scrapy.Field(serialize=List[str])
