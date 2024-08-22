@@ -6,7 +6,7 @@
 import scrapy
 
 
-class NoticiasG1Item(scrapy.Item):
+class G1RssSpiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass

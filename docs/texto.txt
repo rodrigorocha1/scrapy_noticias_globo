@@ -16,6 +16,22 @@ links = response.xpath('//item/link/text()').getall()
 data_publicacao = response.xpath('//item/pubDate/text()').getall()
 url_noticas =  response.xpath('//item/guid/text()').getall()  
 
+https://g1.globo.com/dynamo/sp/ribeirao-preto-franca/rss2.xml
+
+<img src="https://s2-g1.glbimg.com/Kr-ueLl65-W3WI19uT_PHuTBsRs=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2024/4/e/K7SmxbTjqwf6dNTiLINA/ivete-nataciolyg1.jpeg" /><br />
 
 
-<img src="https://s2-g1.glbimg.com/Kr-ueLl65-W3WI19uT_PHuTBsRs=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2024/4/e/K7SmxbTjqwf6dNTiLINA/ivete-nataciolyg1.jpeg" /><br />  
+response.xpath('//p[@class="content-publication-data__from"]/text()').get() Autor
+
+response.css('p::text').get() Autor
+
+response.css('p.content-publication-data__from::text').get() Também tráz o autor
+
+
+scrapy shell https://g1.globo.com/sp/ribeirao-preto-franca/eleicoes/2024/noticia/2024/08/21/eleicoes-2024-entenda-como-ocorre-o-pleito-em-cidades-com-apenas-um-candidato-a-prefeitura.ghtml
+
+
+response.css('p.content-text__container::text').getall() Traz as noticias
+
+
+ 
