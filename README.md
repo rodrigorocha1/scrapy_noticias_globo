@@ -54,7 +54,7 @@ Armazene as informações extraídas em um arquivo XLSX com as colunas especific
 
 Para visualizar uma demonstração do web scraping, confira o código-fonte no [GitHub](https://github.com/rodrigorocha1/scrapy_noticias_globo).
 Confir
-Assista ao vídeo com a demonstração do projeto em [YouTube](https://youtu.be/DsCQ1fLuJ2U).
+Assista ao vídeo com a demonstração do projeto em [YouTube - Extração de noticias do G1 com python e Scrapy](https://youtu.be/DsCQ1fLuJ2U).
 
 
 ## Requisitos
