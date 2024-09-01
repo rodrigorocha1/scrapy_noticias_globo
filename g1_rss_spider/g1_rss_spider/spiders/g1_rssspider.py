@@ -54,8 +54,8 @@ class G1RssspiderSpider(scrapy.Spider):
         item['data_publicacao'] = response.meta['data_publicacao']
         item['autor_reportagem'] = response.xpath(
             '//p[@class="content-publication-data__from"]/text() | //p[@class="content-publication-data__from"]//a/text()').getall()
-        item['texto_noticia'] = response.css(
-            'p.content-text__container::text').getall()
+        item['texto_noticia'] = response.xpath(
+            '//div[@class="mc-column content-text active-extra-styles "]/p//text()').getall()
         item['subtitulo'] = response.css(
             'h2.content-head__subtitle::text').get()
         yield item

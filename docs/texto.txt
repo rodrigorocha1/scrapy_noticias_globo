@@ -34,6 +34,19 @@ scrapy shell https://g1.globo.com/sp/ribeirao-preto-franca/eleicoes/2024/noticia
 
 response.css('p.content-text__container::text').getall() Traz as noticias
 
+novo_texto_noticias = response.xpath('//div[@class="mc-column content-text active-extra-styles "]/p//text()').getall()
+
+novo_texto_noticias = response.xpath('//div[@class="mc-column content-intertitle content-text active-extra-styles "]/p//text()').getall()
+
+novo_texto_noticias = response.xpath('//div[@class="mc-column content-intertitle content-text active-extra-styles "]/p//text()').getall()
+content-intertitle
+
+response.css('div.mc-article-bod::text').getall()
+
+response.css('div.mc-article-bod::text').getall()
+
+mc-article-body
+
 
  textos = response.xpath('//p[@class="content-publication-data__from"]/text() | //p[@class="content-publication-data__from"]//a/text()').getall()
 
