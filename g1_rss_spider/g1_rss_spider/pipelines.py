@@ -47,7 +47,7 @@ class XLSXPipeline:
 
         self.sheet.title = 'Dados Coletados'
         self.sheet.append(['TITULO', 'SUBTITULO', 'DESCRICAO', 'LINK',
-                          'DATA_PUBLICACAO', 'AUTOR_REPORTAGEM', 'TEXTO_NOTICA'])
+                          'DATA_PUBLICACAO', 'AUTOR_REPORTAGEM', 'TEXTO_NOTICIA'])
         self.__aplicar_formatacao()
 
     def process_item(self, item: G1RssSpiderItem, spider: Spider) -> G1RssSpiderItem:
